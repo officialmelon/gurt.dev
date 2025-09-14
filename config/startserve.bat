@@ -1,0 +1,1 @@
+C:\Users\braxt\gurted\protocol\cli\target\release\gurty serve --config config/gurty.toml --port 8080

@@ -1,0 +1,60 @@
+[server]
+host = "127.0.0.1"
+port = 8080
+protocol_version = "1.0.0"
+alpn_identifier = "GURT/1.0"
+max_connections = 10
+max_message_size = "10MB"
+
+[server.timeouts]
+handshake = 5
+request = 30
+connection = 10
+pool_idle = 300
+
+[tls]
+certificate = "config/localhost+2.pem"
+private_key = "config/localhost+2-key.pem"
+
+[logging]
+level = "info"
+# access_log = "/var/log/gurty/access.log"
+# error_log = "/var/log/gurty/error.log"
+log_requests = true
+log_responses = false
+
+[security]
+deny_files = [
+    "*.env",
+    "*.config", 
+    ".git/*",
+    "node_modules/*",
+    "*.key",
+    "*.pem"
+]
+
+allowed_methods = ["GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS", "PATCH"]
+rate_limit_requests = 100  # requests per minute
+rate_limit_connections = 1000  # concurrent connections per IP
+
+# Error pages configuration
+[error_pages]
+# Specific error pages (uncomment and set paths to custom files)
+# "400" = "/errors/400.html"
+# "401" = "/errors/401.html"
+# "403" = "/errors/403.html"
+# "404" = "/errors/404.html"
+# "405" = "/errors/405.html"
+# "429" = "/errors/429.html"
+# "500" = "/errors/500.html"
+# "503" = "/errors/503.html"
+
+[error_pages.default]
+"400" = '''<!DOCTYPE html>
+<html><head><title>400 Bad Request</title></head>
+<body><h1>400 - Bad Request</h1><p>The request could not be understood by the server.</p><a href="/">Back to home</a></body></html>'''
+
+[headers]
+server = "GURT/1.0.0"
+"x-frame-options" = "SAMEORIGIN"
+"x-content-type-options" = "nosniff"
