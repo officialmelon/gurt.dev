@@ -6,23 +6,31 @@
     
     <font name="roboto" src="https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3KUBGEe.woff2" />
     <style>
-        body {bg-[#131316]}
+        body {bg-[#26262C]}
         .header {text-[#D6D6D6] font-roboto text-center mx-auto mt-[200]}
+        .mini-header {text-[#D6D6D6] font-roboto text-xs text-left}
         .authbox {flex mx-auto flex-col}
-        .auth { text-[#D6D6D6] font-roboto mx-auto w-[15] h-[10] mt-[40]}
+        .auth { text-[#D6D6D6] font-roboto mx-auto rounded-xl w-[15] h-[10] mt-[40] hover:bg-[#1C1C21] }
+        .carbon-img {}
     </style>
     <script src="script.lua" />
 </head>
 
 <body>
-    <div style="w-50 h-full bg-[#26262C]">
-        <div style="header">
-            <h1>Gurt.dev</h1>
-        </div>
+    <div style="w-full h-full flex flex-row content-center mt-24 justify-between bg-[#26262C]"> 
+        <div style="flex flex-col ml-48">
+            <div style="header">
+                <h1>Gurt.dev</h1>
+                <h1 style="mini-header">The better [color=yellow]dns.web[/color]</h1>
+            </div>
 
-        <div style="authbox">
-            <button id="register" style="auth" >Register</button>
-            <button id="login" style="auth" >Login</button>
+            <div style="authbox">
+                <button id="register" style="auth" >Register</button>
+                <button id="login" style="auth" >Login</button>
+            </div>
+        </div>
+        <div>
+            <img style="w-50 mt-12" src="https://github.com/officialmelon/gurt.dev/blob/main/assets/carbon_img.png?raw=true"/>
         </div>
     </div>
 </body>
