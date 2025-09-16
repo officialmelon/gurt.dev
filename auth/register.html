@@ -1,0 +1,34 @@
+<head>
+    <title>Gurt.dev - A domain configuration service</title>
+    <icon src="https://example.com/icon.png">
+    <meta name="theme-color" content="#1a202c">
+    <meta name="description" content="Page description">
+    
+    <font name="roboto" src="https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3KUBGEe.woff2" />
+    <style>
+        body {bg-[#26262C]}
+        .header {text-[#D6D6D6] font-roboto-700 text-center mt-[150]}
+        .mini-header {text-[#D6D6D6] font-roboto text-xs text-center}
+        .authbox {mx-auto}
+        .auth { text-[#D6D6D6] font-roboto mx-auto font-bold rounded-xl w-[15] h-[10] mt-[40]}
+        .carbon-img {}
+    </style>
+    <script src="/scripts/authentication/auth.lua" />
+</head>
+
+<body>
+    <div id="main-div" style="text-center w-full h-full flex flex-row mt-24 mb-24 justify-center bg-[#26262C]"> 
+        <div style="flex flex-col text-center">
+            <div style="header">
+                <h1>Gurt.dev</h1>
+                <h1 style="mini-header">The better [color=yellow]dns.web[/color]</h1>
+            </div>
+            <input type="text" style="auth text-xs bg-[#18181a]" placeholder="Username" />
+            <input type="password" style="auth text-xs bg-[#18181a]" placeholder="Password" />
+            <div id="authbox" style="authbox">
+                <button id="register" style="auth bg-[#2559b7]">Sign Up</button>
+                <div id="login"></div>
+            </div>
+        </div>
+    </div>
+</body>

@@ -7,26 +7,26 @@
     <font name="roboto" src="https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3KUBGEe.woff2" />
     <style>
         body {bg-[#26262C]}
-        .header {text-[#D6D6D6] font-roboto text-center mx-auto mt-[200]}
+        .header {text-[#D6D6D6] font-roboto-700 text-center mx-auto mt-[200]}
         .mini-header {text-[#D6D6D6] font-roboto text-xs text-left}
         .authbox {flex mx-auto flex-col}
-        .auth { text-[#D6D6D6] font-roboto mx-auto rounded-xl w-[15] h-[10] mt-[40] hover:bg-[#1C1C21] }
+        .auth { text-[#D6D6D6] bg-[#18181a] font-roboto mx-auto font-bold rounded-xl w-[15] h-[10] mt-[40] hover:bg-[#1C1C21] }
         .carbon-img {}
     </style>
-    <script src="script.lua" />
+    <script src="/scripts/main/start.lua" />
 </head>
 
 <body>
-    <div style="w-full h-full flex flex-row content-center mt-24 justify-between bg-[#26262C]"> 
+    <div id="main-div" style="w-full h-full flex flex-row content-center mt-24 justify-between bg-[#26262C]"> 
         <div style="flex flex-col ml-48">
             <div style="header">
                 <h1>Gurt.dev</h1>
-                <h1 style="mini-header">The better [color=yellow]dns.web[/color]</h1>
+                <h1 style="mini-header">[color=D6D6D6]The better[/color] [color=yellow]dns.web[/color]</h1>
             </div>
 
-            <div style="authbox">
-                <button id="register" style="auth" >Register</button>
-                <button id="login" style="auth" >Login</button>
+            <div id="authbox" style="authbox">
+                <button id="getstarted" style="auth bg-[#2559b7]">Get Started</button>
+                <button id="login" style="auth">Existing User?</button>
             </div>
         </div>
         <div>
