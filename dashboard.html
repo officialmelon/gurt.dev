@@ -6,20 +6,36 @@
     
     <font name="roboto" src="https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3KUBGEe.woff2" />
     <style>
-        body {bg-[#26262C]}
-        .header {text-[#D6D6D6] text-3xl font-roboto-700 text-center mx-auto}
+        body {bg-[#191d24]}
+        .header {text-[#D6D6D6] font-roboto-200 text-center mx-auto}
         .mini-header {text-[#D6D6D6] text-center font-roboto text-xs}
+        .domain-card {w-100 h-13 bg-[#252b36] rounded-xl my-2 border border-gray-700 mx-auto rounded-xl justify-center flex flex-col}
+        .domain-card-text {text-[#D6D6D6] text-sm font-roboto text-lg text-left}
+
+        .denied {border-[#f54242]}
+        .pending {border-[#ffef3d]}
+        .approved {border-gray-700}
+
     </style>
-    <script src="scripts/main/start.lua" />
+    <script src="scripts/main/dashboard.lua" />
 </head>
 
 <body>
-    <div style="w-full h-full flex flex-row justify-center bg-[#26262C]">
-        <div style="flex flex-col w-full">
-            <h1 style="header">Your Domains</h1>
-            <h1 style="mini-header w-full h-12 bg-[#141414]">Domain 1</h1>
-            <h1 style="mini-header w-full">Domain 2</h1>
-            <h1 style="mini-header w-full">Domain 3</h1>
+    <div style="w-100 flex flex-row justify-between mx-auto">
+        <h1 style="text-xl header mt-2 mx-auto">gurt.dev</h1>
+        <div style="flex flex-row justify-between w-30">
+            <button id="dashboard" style="text-xl bg-transparent text-[#D6D6D6] mt-2 mx-auto">dashboard</button>
+            <button id="hosting" style="text-xl bg-transparent text-[#D6D6D6] mt-2 mx-auto">hosting</button>
+            <button id="new-domain" style="text-xl bg-transparent text-[#D6D6D6] mt-2 mx-auto">new domain</button>
+        </div>
+        <h1 style="text-xl mt-2 header mx-auto">#dashboard</h1>
+    </div>
+    <div style="pt-4 border-t w-100 mx-auto border-gray-700"></div>
+    <div style="w-full flex flex-row mt-3 mx-auto justify-center bg-[#191d24]">
+        <div id="domain-holder" style="flex flex-col w-full justify-center mx-auto">
+            <div id="loading" style="w-100">            
+                <h1 style="mini-header text-xl mx-auto"> there is nothing here yet owo! wait for it to load orrrr create a new domain! o.o</h1>
+            </div>
         </div>
     </div>
 </body>

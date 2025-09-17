@@ -42,11 +42,10 @@ local function loginDNSWeb(username, password)
     })
     if response:ok() then
         local data = response:json()
-        
         if response.status == 200 then
             gurt.crumbs.set({
                 name = "dnsWEB", 
-                value = data
+                value = data["token"]
             })
         end
     end
@@ -74,7 +73,7 @@ if string.find(string.lower(gurt.location.href), string.lower("connectdnsweb")) 
         local status = loginDNSWeb(username, password)
         if status == 200 then --// Success
             elements["Error"].text = "[color=green]Successfully authenticated as " .. username .. "[/color]"
-            gurt.location.goto('/main/start.html')
+            gurt.location.goto('/dashboard.html'  )
             return
 
         elseif status == 401 then --// Invalid auth
