@@ -1,0 +1,339 @@
+<head>
+    <title>Gurt.dev - A domain configuration service</title>
+    <icon src="https://example.com/icon.png">
+    <meta name="theme-color" content="#1a202c">
+    <meta name="description" content="Page description">
+    
+    <font name="roboto" src="https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3KUBGEe.woff2" />
+    <style>
+        body {bg-[#191d24] font-roboto text-[#D6D6D6]}
+        .header {text-[#D6D6D6] font-roboto-200 text-center mx-auto}
+        .mini-header {text-[#D6D6D6] text-center font-roboto text-xs}
+        .domain-card {w-100 h-13 bg-[#252b36] rounded-xl my-2 border border-gray-700 mx-auto rounded-xl justify-center flex flex-col}
+        .domain-card-text {text-[#D6D6D6] text-sm font-roboto text-lg text-left}
+
+    </style>
+    <script src="scripts/main/create.lua" />
+</head>
+
+
+<body>
+    <div style="w-100 flex flex-row justify-between mx-auto">
+        <h1 style="text-xl header mt-2 mx-auto">gurt.dev</h1>
+        <div style="flex flex-row justify-between w-30">
+            <button href="/dashboard.html" id="dashboard" style="text-xl bg-transparent text-[#D6D6D6] mt-2 mx-auto">dashboard</button>
+            <button href="/hosting.html" id="hosting" style="text-xl bg-transparent text-[#D6D6D6] mt-2 mx-auto">hosting</button>
+            <button href="/new-domain.html" id="new-domain" style="text-xl bg-transparent text-[#D6D6D6] mt-2 mx-auto">new domain</button>
+        </div>
+        <h1 style="text-xl mt-2 header mx-auto">#create</h1>
+    </div>
+    <div style="pt-4 border-t w-100 mx-auto border-gray-700"></div>
+
+    <div style="w-100 flex flex-row justify-center mx-auto">
+        <h1 id="create-domain" style="text-xl header mt-2 mx-auto">Create a new domain</h1>
+    </div>
+
+    <div style="w-full flex flex-row mt-3 mx-auto justify-center bg-[#191d24]">
+        <div id="domain-holder" style="flex flex-col w-full justify-center mx-auto">
+        </div>
+    </div>
+
+    <div style="w-45 h-35 flex flex-row mx-auto justify-center border border-gray-700">
+
+        <div style="w-50 flex flex-col mx-auto mt-3 justify-center">
+            <h1 style="mini-header">Select domain details</h1>
+            <h1 style="mini-header mt-12">Domain Name</h1>
+
+            <input id="domain-name" style="text-[#D6D6D6] border border-gray-700 font-roboto mx-auto font-bold rounded-xl h-[10] mt-0" type="text" placeholder="example"/>
+            <h1 style="mini-header mt-5">TLD</h1>
+            <select id="tld-select" style="h-10 mt-1 text-[#D6D6D6] border border-gray-700 font-roboto mx-auto font-bold text-center rounded-xl">
+                <option value="shit">.shit</option>
+                <option value="based">.based</option>
+                <option value="delulu">.delulu</option>
+                <option value="aura">.aura</option>
+                <option value="pmo">.pmo</option>
+                <option value="sucks">.sucks</option>
+                <option value="emo">.emo</option>
+                <option value="twin">.twin</option>
+                <option value="zorp">.zorp</option>
+                <option value="clank">.clank</option>
+                <option value="web">.web</option>
+                <option value="fent">.fent</option>
+                <option value="yeah">.yeah</option>
+                <option value="slop">.slop</option>
+                <option value="job">.job</option>
+                <option value="goat">.goat</option>
+                <option value="buss">.buss</option>
+                <option value="dawg">.dawg</option>
+                <option value="opium">.opium</option>
+                <option value="gang">.gang</option>
+                <option value="ok">.ok</option>
+                <option value="wtf">.wtf</option>
+                <option value="lol">.lol</option>
+                <option value="scam">.scam</option>
+                <option value="cat">.cat</option>
+                <option value="edge">.edge</option>
+                <option value="miku">.miku</option>
+                <option value="dumb">.dumb</option>
+                <option value="balls">.balls</option>
+                <option value="yap">.yap</option>
+                <option value="attic">.attic</option>
+                <option value="ayo">.ayo</option>
+                <option value="dev">.dev</option>
+                <option value="ac">.ac</option>
+                <option value="ad">.ad</option>
+                <option value="ae">.ae</option>
+                <option value="af">.af</option>
+                <option value="ag">.ag</option>
+                <option value="ai">.ai</option>
+                <option value="al">.al</option>
+                <option value="am">.am</option>
+                <option value="ao">.ao</option>
+                <option value="aq">.aq</option>
+                <option value="ar">.ar</option>
+                <option value="as">.as</option>
+                <option value="at">.at</option>
+                <option value="au">.au</option>
+                <option value="aw">.aw</option>
+                <option value="ax">.ax</option>
+                <option value="az">.az</option>
+                <option value="ba">.ba</option>
+                <option value="bb">.bb</option>
+                <option value="bd">.bd</option>
+                <option value="be">.be</option>
+                <option value="bf">.bf</option>
+                <option value="bg">.bg</option>
+                <option value="bh">.bh</option>
+                <option value="bi">.bi</option>
+                <option value="bj">.bj</option>
+                <option value="bm">.bm</option>
+                <option value="bn">.bn</option>
+                <option value="bo">.bo</option>
+                <option value="bq">.bq</option>
+                <option value="br">.br</option>
+                <option value="bs">.bs</option>
+                <option value="bt">.bt</option>
+                <option value="bv">.bv</option>
+                <option value="bw">.bw</option>
+                <option value="by">.by</option>
+                <option value="bz">.bz</option>
+                <option value="ca">.ca</option>
+                <option value="cc">.cc</option>
+                <option value="cd">.cd</option>
+                <option value="cf">.cf</option>
+                <option value="cg">.cg</option>
+                <option value="ch">.ch</option>
+                <option value="ci">.ci</option>
+                <option value="ck">.ck</option>
+                <option value="cl">.cl</option>
+                <option value="cm">.cm</option>
+                <option value="cn">.cn</option>
+                <option value="co">.co</option>
+                <option value="cr">.cr</option>
+                <option value="cu">.cu</option>
+                <option value="cv">.cv</option>
+                <option value="cw">.cw</option>
+                <option value="cx">.cx</option>
+                <option value="cy">.cy</option>
+                <option value="cz">.cz</option>
+                <option value="de">.de</option>
+                <option value="dj">.dj</option>
+                <option value="dk">.dk</option>
+                <option value="dm">.dm</option>
+                <option value="do">.do</option>
+                <option value="dz">.dz</option>
+                <option value="ec">.ec</option>
+                <option value="ee">.ee</option>
+                <option value="eg">.eg</option>
+                <option value="eh">.eh</option>
+                <option value="er">.er</option>
+                <option value="es">.es</option>
+                <option value="et">.et</option>
+                <option value="eu">.eu</option>
+                <option value="fi">.fi</option>
+                <option value="fj">.fj</option>
+                <option value="fk">.fk</option>
+                <option value="fm">.fm</option>
+                <option value="fo">.fo</option>
+                <option value="fr">.fr</option>
+                <option value="ga">.ga</option>
+                <option value="gb">.gb</option>
+                <option value="gd">.gd</option>
+                <option value="ge">.ge</option>
+                <option value="gf">.gf</option>
+                <option value="gg">.gg</option>
+                <option value="gh">.gh</option>
+                <option value="gi">.gi</option>
+                <option value="gl">.gl</option>
+                <option value="gm">.gm</option>
+                <option value="gn">.gn</option>
+                <option value="gp">.gp</option>
+                <option value="gq">.gq</option>
+                <option value="gr">.gr</option>
+                <option value="gs">.gs</option>
+                <option value="gt">.gt</option>
+                <option value="gu">.gu</option>
+                <option value="gw">.gw</option>
+                <option value="gy">.gy</option>
+                <option value="hk">.hk</option>
+                <option value="hm">.hm</option>
+                <option value="hn">.hn</option>
+                <option value="hr">.hr</option>
+                <option value="ht">.ht</option>
+                <option value="hu">.hu</option>
+                <option value="id">.id</option>
+                <option value="ie">.ie</option>
+                <option value="il">.il</option>
+                <option value="im">.im</option>
+                <option value="in">.in</option>
+                <option value="io">.io</option>
+                <option value="iq">.iq</option>
+                <option value="ir">.ir</option>
+                <option value="is">.is</option>
+                <option value="it">.it</option>
+                <option value="je">.je</option>
+                <option value="jm">.jm</option>
+                <option value="jo">.jo</option>
+                <option value="jp">.jp</option>
+                <option value="ke">.ke</option>
+                <option value="kg">.kg</option>
+                <option value="kh">.kh</option>
+                <option value="ki">.ki</option>
+                <option value="km">.km</option>
+                <option value="kn">.kn</option>
+                <option value="kp">.kp</option>
+                <option value="kr">.kr</option>
+                <option value="kw">.kw</option>
+                <option value="ky">.ky</option>
+                <option value="kz">.kz</option>
+                <option value="la">.la</option>
+                <option value="lb">.lb</option>
+                <option value="lc">.lc</option>
+                <option value="li">.li</option>
+                <option value="lk">.lk</option>
+                <option value="lr">.lr</option>
+                <option value="ls">.ls</option>
+                <option value="lt">.lt</option>
+                <option value="lu">.lu</option>
+                <option value="lv">.lv</option>
+                <option value="ly">.ly</option>
+                <option value="ma">.ma</option>
+                <option value="mc">.mc</option>
+                <option value="md">.md</option>
+                <option value="me">.me</option>
+                <option value="mg">.mg</option>
+                <option value="mh">.mh</option>
+                <option value="mk">.mk</option>
+                <option value="ml">.ml</option>
+                <option value="mm">.mm</option>
+                <option value="mn">.mn</option>
+                <option value="mo">.mo</option>
+                <option value="mp">.mp</option>
+                <option value="mq">.mq</option>
+                <option value="mr">.mr</option>
+                <option value="ms">.ms</option>
+                <option value="mt">.mt</option>
+                <option value="mu">.mu</option>
+                <option value="mv">.mv</option>
+                <option value="mw">.mw</option>
+                <option value="mx">.mx</option>
+                <option value="my">.my</option>
+                <option value="mz">.mz</option>
+                <option value="na">.na</option>
+                <option value="nc">.nc</option>
+                <option value="ne">.ne</option>
+                <option value="nf">.nf</option>
+                <option value="ng">.ng</option>
+                <option value="ni">.ni</option>
+                <option value="nl">.nl</option>
+                <option value="no">.no</option>
+                <option value="np">.np</option>
+                <option value="nr">.nr</option>
+                <option value="nu">.nu</option>
+                <option value="nz">.nz</option>
+                <option value="om">.om</option>
+                <option value="pa">.pa</option>
+                <option value="pe">.pe</option>
+                <option value="pf">.pf</option>
+                <option value="pg">.pg</option>
+                <option value="ph">.ph</option>
+                <option value="pk">.pk</option>
+                <option value="pl">.pl</option>
+                <option value="pm">.pm</option>
+                <option value="pn">.pn</option>
+                <option value="pr">.pr</option>
+                <option value="ps">.ps</option>
+                <option value="pt">.pt</option>
+                <option value="pw">.pw</option>
+                <option value="py">.py</option>
+                <option value="qa">.qa</option>
+                <option value="re">.re</option>
+                <option value="ro">.ro</option>
+                <option value="rs">.rs</option>
+                <option value="ru">.ru</option>
+                <option value="rw">.rw</option>
+                <option value="sa">.sa</option>
+                <option value="sb">.sb</option>
+                <option value="sc">.sc</option>
+                <option value="sd">.sd</option>
+                <option value="se">.se</option>
+                <option value="sg">.sg</option>
+                <option value="sh">.sh</option>
+                <option value="si">.si</option>
+                <option value="sj">.sj</option>
+                <option value="sk">.sk</option>
+                <option value="sl">.sl</option>
+                <option value="sm">.sm</option>
+                <option value="sn">.sn</option>
+                <option value="so">.so</option>
+                <option value="sr">.sr</option>
+                <option value="ss">.ss</option>
+                <option value="st">.st</option>
+                <option value="su">.su</option>
+                <option value="sv">.sv</option>
+                <option value="sx">.sx</option>
+                <option value="sy">.sy</option>
+                <option value="sz">.sz</option>
+                <option value="tc">.tc</option>
+                <option value="td">.td</option>
+                <option value="tf">.tf</option>
+                <option value="tg">.tg</option>
+                <option value="th">.th</option>
+                <option value="tj">.tj</option>
+                <option value="tk">.tk</option>
+                <option value="tl">.tl</option>
+                <option value="tm">.tm</option>
+                <option value="tn">.tn</option>
+                <option value="to">.to</option>
+                <option value="tr">.tr</option>
+                <option value="tt">.tt</option>
+                <option value="tv">.tv</option>
+                <option value="tw">.tw</option>
+                <option value="tz">.tz</option>
+                <option value="ua">.ua</option>
+                <option value="ug">.ug</option>
+                <option value="uk">.uk</option>
+                <option value="us">.us</option>
+                <option value="uy">.uy</option>
+                <option value="uz">.uz</option>
+                <option value="va">.va</option>
+                <option value="vc">.vc</option>
+                <option value="ve">.ve</option>
+                <option value="vg">.vg</option>
+                <option value="vi">.vi</option>
+                <option value="vn">.vn</option>
+                <option value="vu">.vu</option>
+                <option value="wf">.wf</option>
+                <option value="ws">.ws</option>
+                <option value="ye">.ye</option>
+                <option value="yt">.yt</option>
+                <option value="za">.za</option>
+                <option value="zm">.zm</option>
+                <option value="zw">.zw</option>
+            </select>
+            <button id="create-domain" style="bg-[#2559b7] text-[#D6D6D6] font-roboto mx-auto font-bold rounded-xl w-[15] h-[10] mt-[7]">Request Domain</button>
+            <h1 style="mini-header mt-2">After requesting, you will have to wait for a moderator to accept your domain.</h1>
+            <h1 id="error-message" style="mini-header text-[#FF0000] mt-5"></h1>
+        </div>
+    </div>
+</body>

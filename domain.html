@@ -1,78 +1,70 @@
-local domainEndpoint = "gurt://dns.web/auth/domains"
-local ourDnsCreds = gurt.crumbs.get("dnsWEB")
+<head>
+    <title>Gurt.dev - A domain configuration service</title>
+    <icon src="https://example.com/icon.png">
+    <meta name="theme-color" content="#1a202c">
+    <meta name="description" content="Page description">
+    
+    <font name="roboto" src="https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3KUBGEe.woff2" />
+    <style>
+        body {bg-[#191d24] font-roboto text-[#D6D6D6]}
+        .header {text-[#D6D6D6] font-roboto-200 text-center mx-auto}
+        .mini-header {text-[#D6D6D6] text-center font-roboto text-xs}
+        .domain-card {w-100 h-13 bg-[#252b36] rounded-xl my-2 border border-gray-700 mx-auto rounded-xl justify-center flex flex-col}
+        .domain-card-text {text-[#D6D6D6] text-sm font-roboto text-lg text-left}
 
-local elements = {
-    ["new-domain"] = gurt.select("#new-domain"),
-    ["hosting"] = gurt.select("#hosting"),
-    ["dashboard"] = gurt.select("#dashboard"),
-}
-
-elements["new-domain"]:on('click', function()
-    gurt.location.goto('/create.html')
-end)
-
-elements["hosting"]:on('click', function()
-    gurt.location.goto('/hosting.html')
-end)
-
-elements["dashboard"]:on('click', function()
-    gurt.location.goto('/dashboard.html')
-end)
+    </style>
+    <script src="scripts/main/domain.lua" />
+</head>
 
 
-if ourDnsCreds == nil then --// does token exist?
-    gurt.location.goto('/auth/connectdnsweb.html')
-else
-    -- get domains
-    local response = fetch(domainEndpoint, {
-        method = "GET",
-        headers = {
-            ["Content-Type"] = "application/json",
-            ["Authorization"] = "Bearer " .. ourDnsCreds
-        }
-    })
-    -- remove existing loading 
-    if #response:json()["domains"] >= 1 then
-        if gurt.select('#loading') then
-            gurt.select('#loading'):remove()
-        end
-    end
-    -- domains
-    for _, domain in pairs(response:json()["domains"]) do
-        if domain["status"] == "approved" then
-            local newDomain = gurt.create('div', { style = 'domain-card approved' })
-            local domainName = gurt.create('h1', { style = 'domain-card-text ml-5 h-12 bg-[#141414]', text = domain.name .. "." .. domain.tld })
-            newDomain:append(domainName)
-            local analytics = gurt.create('h1', { style = 'domain-card-text ml-5 h-12 bg-[#141414] text-xs text-[#8b8b8bff]', text = '[color=#8b8b8bff][color=#3b65b3]' .. "Analytics not setup." .. '[/color][/color]' })
-            newDomain:append(analytics)
-            local status = gurt.create('h1', { style = 'domain-card-text ml-5 h-12 bg-[#141414] text-xs text-[#8b8b8bff]', text = '[color=#8b8b8bff]Status: [color=#36a847]' .. domain.status .. '[/color][/color]' })
-            newDomain:append(status)
-            local manageDiv = gurt.create('div', { style = 'pt-4 border-t border-gray-700' })
-            local manageButton = gurt.create('button', { style = 'bg-transparent ml-5 text-[#D6D6D6] text-xs font-roboto py-1 px-2 rounded', text = 'Manage →' })
-            manageDiv:append(manageButton)
-            newDomain:append(manageDiv)
+<body>
+    <div style="w-100 flex flex-row justify-between mx-auto">
+        <h1 style="text-xl header mt-2 mx-auto">gurt.dev</h1>
+        <div style="flex flex-row justify-between w-30">
+            <button href="/dashboard.html" id="dashboard" style="text-xl bg-transparent text-[#D6D6D6] mt-2 mx-auto">dashboard</button>
+            <button href="/hosting.html" id="hosting" style="text-xl bg-transparent text-[#D6D6D6] mt-2 mx-auto">hosting</button>
+            <button href="/new-domain.html" id="new-domain" style="text-xl bg-transparent text-[#D6D6D6] mt-2 mx-auto">new domain</button>
+        </div>
+        <h1 style="text-xl mt-2 header mx-auto">#dashboard</h1>
+    </div>
+    <div style="pt-4 border-t w-100 mx-auto border-gray-700"></div>
 
-            manageButton:on('click', function()
-                gurt.location.goto('/domain.html?domain=' .. domain.name .. '.' .. domain.tld)
-            end)
+    <div style="w-100 flex flex-row justify-center mx-auto">
+        <h1 id="domain-name" style="text-xl header mt-2 mx-auto">Loading...</h1>
+    </div>
 
-            gurt.select('#domain-holder'):append(newDomain)
-        elseif domain["status"] == "pending" then
-            local newDomain = gurt.create('div', { style = 'domain-card pending' })
-            local domainName = gurt.create('h1', { style = 'domain-card-text ml-5 h-12 bg-[#141414]', text = "[color=#ffef3d]" .. domain.name .. "." .. domain.tld .. "[/color]" })
-            local domainInfo = gurt.create('h1', { style = 'domain-card-text ml-5 h-12 bg-[#141414] text-xs text-[#8b8b8bff]', text = "[color=#ffef3d]Pending Approval[/color]" })
-            newDomain:append(domainName)
-            newDomain:append(domainInfo)
-            gurt.select('#domain-holder'):append(newDomain)
-        elseif domain["status"] == "denied" then
-            local newDomain = gurt.create('div', { style = 'domain-card denied' })
-            local domainName = gurt.create('h1', { style = 'domain-card-text ml-5 h-12 bg-[#141414]', text = "[color=#f54242]" .. domain.name .. "." .. domain.tld .. "[/color]" })
-            local domainInfo = gurt.create('h1', { style = 'domain-card-text ml-5 h-12 bg-[#141414] text-xs text-[#8b8b8bff]', text = "[color=#f54242]Denied Approval[/color]" })
-            newDomain:append(domainName)
-            newDomain:append(domainInfo)
-            gurt.select('#domain-holder'):append(newDomain)
-        end
-        print(domain["name"] .. "." .. domain["tld"] .. " - " .. domain["status"])
-        Time.sleep(0.14) -- to prevent freezing
-    end
-end
+
+    <!---- Change stuff like where domain points to, analytics, ---->
+
+    <div style="w-full flex flex-row mt-3 mx-auto justify-center bg-[#191d24]">
+        <div id="domain-holder" style="flex flex-col w-full justify-center mx-auto">
+        </div>
+    </div>
+
+    <div style="w-100 h-35 flex flex-row mx-auto justify-between border border-gray-700">
+
+        <div style="w-50 flex flex-col mx-auto mt-12 justify-center">
+            <h1 style="mini-header">Add DNS Record</h1>
+            <h1 style="mini-header mt-5">Type</h1>
+            <select id="record-type" style="h-10 mt-1 text-[#D6D6D6] border border-gray-700 font-roboto mx-auto font-bold text-center rounded-xl">
+                <option value="A" selected="true">A</option>
+                <option value="AAAA">AAAA</option>
+                <option value="CNAME">CNAME</option>
+                <option value="TXT">TXT</option>
+            </select>
+            <h1 style="mini-header mt-3">Name</h1>
+            <input id="record-name" style="text-[#D6D6D6] border border-gray-700 font-roboto mx-auto font-bold rounded-xl h-[10] mt-0" type="text" placeholder="@, www.*"/>
+            <h1 style="mini-header mt-3">Value</h1>
+            <input id="record-value" style="text-[#D6D6D6] border border-gray-700 font-roboto mx-auto font-bold rounded-xl h-[10] mt-0" type="text" placeholder="192.168.1.1, example.com"/>
+            <h1 style="mini-header mt-3">TTL</h1>
+            <input id="record-ttl" style="text-[#D6D6D6] border border-gray-700 font-roboto mx-auto font-bold rounded-xl h-[10] mt-0 mb-3" type="text" placeholder="3600"/>
+            <button id="add-record" style="bg-[#2559b7] text-[#D6D6D6] font-roboto mx-auto font-bold rounded-xl w-[15] h-[10] mt-[7]">Add Record</button>
+            <h1 id="error-message" style="mini-header text-[#FF0000] mt-0"></h1>
+        </div>
+        <div id="record-holder"style="mr-15 w-50 flex flex-col mx-auto mt-12 justify-center">
+            <h1 style="mini-header">DNS Records</h1>
+            <h1 id="loading-records" style="text-lg mini-headers mt-13 text-center">Loading...</h1>
+        </div>
+
+    </div>
+</body>

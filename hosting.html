@@ -1,0 +1,64 @@
+<head>
+    <title>Gurt.dev - A domain configuration service</title>
+    <icon src="https://example.com/icon.png">
+    <meta name="theme-color" content="#1a202c">
+    <meta name="description" content="Page description">
+    
+    <font name="roboto" src="https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3KUBGEe.woff2" />
+    <style>
+        body {bg-[#191d24] font-roboto text-[#D6D6D6]}
+        .header {text-[#D6D6D6] font-roboto-200 text-center mx-auto}
+        .mini-header {text-[#D6D6D6] text-center font-roboto text-xs}
+        .hosting-form {w-100 h-auto bg-[#252b36] rounded-xl border border-gray-700 mx-auto p-6 flex flex-col}
+        .form-section {w-50 flex flex-col justify-center mx-auto}
+        .projects-section {w-50 flex flex-col justify-center mx-auto text-center}
+        .project-item {w-80 h-16 bg-[#252b36] rounded-xl my-2 border border-gray-700 flex flex-col justify-center px-6 py-3 mx-auto}
+        .project-name {text-[#D6D6D6] font-roboto text-base font-bold}
+        .project-url {text-[#888888] font-roboto text-xs mt-1}
+        .project-status {text-[#2559b7] font-roboto text-xs font-bold}
+    </style>
+    <script src="scripts/main/hosting.lua" />
+</head>
+
+<body>
+    <div style="w-100 flex flex-row justify-between mx-auto">
+        <h1 style="text-xl header mt-2 mx-auto">gurt.dev</h1>
+        <div style="flex flex-row justify-between w-30">
+            <button href="/dashboard.html" id="dashboard" style="text-xl bg-transparent text-[#D6D6D6] mt-2 mx-auto">dashboard</button>
+            <button href="/hosting.html" id="hosting" style="text-xl bg-transparent text-[#D6D6D6] mt-2 mx-auto">hosting</button>
+            <button href="/new-domain.html" id="new-domain" style="text-xl bg-transparent text-[#D6D6D6] mt-2 mx-auto">new domain</button>
+        </div>
+        <h1 style="text-xl mt-2 header mx-auto">#hosting</h1>
+    </div>
+    <div style="pt-4 border-t w-100 mx-auto border-gray-700"></div>
+
+    <div style="w-100 flex flex-row justify-center mx-auto mt-4">
+        <h1 style="text-2xl header mt-2 mx-auto">Static Hosting</h1>
+    </div>
+    <div style="w-100 flex flex-row justify-center mx-auto">
+        <h1 style="mini-header mt-1 mx-auto">Host your GitHub projects instantly - Free up to 10MB per repository</h1>
+    </div>
+
+    <div style="w-100 h-auto flex flex-row mx-auto justify-center border border-gray-700 mt-6">
+
+        <div style="form-section mt-8 mb-8">
+            <h1 style="mini-header">Deploy New Project</h1>
+            <h1 style="mini-header mt-5">GitHub Repository URL</h1>
+            <input id="github-url" style="text-[#D6D6D6] border border-gray-700 font-roboto mx-auto font-bold rounded-xl h-10 mt-1 w-35" type="text" placeholder="https://github.com/username/repo"/>
+            <h1 style="mini-header mt-3">Project Name</h1>
+            <input id="project-name" style="text-[#D6D6D6] border border-gray-700 font-roboto mx-auto font-bold rounded-xl h-10 mt-1 w-35" type="text" placeholder="my-awesome-site"/>
+            <h1 style="mini-header mt-3">Domain</h1>
+            <select id="domain-select" style="mt-1 text-[#D6D6D6] border border-gray-700 font-roboto mx-auto font-bold text-center rounded-xl w-35">
+                <option value="" selected="true">Select Domain</option>
+                <option value="example.com">example.com</option>
+                <option value="mysite.dev">mysite.dev</option>
+            </select>
+            <h1 style="mini-header mt-3">Subdomain</h1>
+            <input id="subdomain" style="text-[#D6D6D6] border border-gray-700 font-roboto mx-auto font-bold rounded-xl h-10 mt-1 w-35 mb-4" type="text" placeholder="www, blog, app"/>
+            <button id="deploy-project" style="bg-[#2559b7] text-[#D6D6D6] font-roboto mx-auto font-bold rounded-xl w-full h-10 mt-3">Deploy Project</button>
+            <h1 id="deploy-message" style="mini-header text-[#FF0000] mt-2"></h1>
+        </div>
+
+    </div>
+
+</body>

@@ -19,6 +19,22 @@ elements["dashboard"]:on('click', function()
     gurt.location.goto('/dashboard.html')
 end)
 
+function checkCredsAPI()
+    local dnsCreds = gurt.crumbs.get("dnsWEB")
+    local check = fetch("gurt://dns.web/auth/me", {
+        method = "GET",
+        headers = {
+            ["Content-Type"] = "application/json",
+            ["Authorization"] = "Bearer " .. dnsCreds
+        }
+    })
+    if check.status ~= 200 or not dnsCreds then
+        gurt.location.goto('/auth/connectdnsweb.html')
+        return
+    end
+end
+checkCredsAPI()
+
 
 if ourDnsCreds == nil then --// does token exist?
     gurt.location.goto('/auth/connectdnsweb.html')
